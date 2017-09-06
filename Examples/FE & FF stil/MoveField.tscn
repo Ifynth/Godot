@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Movement.gd" type="Script" id=1]
+
+[node name="MoveField" type="Node2D" groups=[
+"MoveBlock",
+]]
+
+[node name="field" type="Sprite" parent="."]
+
+script/script = ExtResource( 1 )
+
+
