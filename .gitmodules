@@ -1,0 +1,3 @@
+[submodule "Inaba"]
+	path = Inaba
+	url = https://github.com/Ifynth/Inaba
