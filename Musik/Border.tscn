@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Border.gd" type="Script" id=1]
+
+[node name="Border" type="Node2D"]
+
+transform/pos = Vector2( 20, 20 )
+script/script = ExtResource( 1 )
+
+[node name="BorderTop" type="Polygon2D" parent="."]
+
+polygon = Vector2Array( 0, 0, 1000, 0, 1000, 10, 0, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Control" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 40.0
+margin/bottom = 80.0
+
+[node name="Great" type="Label" parent="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 14.0
+text = "Great Count : "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Normal" type="Label" parent="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 40.0
+margin/bottom = 34.0
+text = "Normal Count : "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Bad" type="Label" parent="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 77.0
+margin/bottom = 54.0
+text = "Bad Count : "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
