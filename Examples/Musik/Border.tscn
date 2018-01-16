@@ -23,7 +23,7 @@ invert/border = 100.0
 
 [node name="Timer" type="Timer" parent="."]
 
-process_mode = 1
+process_mode = 0
 wait_time = 1.0
 one_shot = false
 autostart = true
