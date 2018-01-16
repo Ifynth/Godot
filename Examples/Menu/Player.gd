@@ -3,9 +3,9 @@ extends KinematicBody2D
 var direction = Vector2(0,0)
 
 func _ready():
-	set_process(true)
+	set_fixed_process(true)
 
-func _process(delta):
+func _fixed_process(delta):
 	direction = Vector2(0,0)
 	
 	if Input.is_action_pressed("ui_up"):

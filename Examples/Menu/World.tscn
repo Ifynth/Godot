@@ -17,8 +17,8 @@ limit/left = -10000000
 limit/top = -10000000
 limit/right = 10000000
 limit/bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
 smoothing/enable = false
 smoothing/speed = 5.0
 drag_margin/left = 0.0
@@ -65,7 +65,6 @@ max_lines_visible = -1
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource( 2 )]
 
-visibility/visible = false
 anchor/left = 1
 anchor/right = 1
 margin/left = 120.0
