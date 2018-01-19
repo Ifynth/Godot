@@ -25,7 +25,7 @@ margin/top = 0.0
 margin/right = 110.0
 margin/bottom = 200.0
 
-[node name="Labels" type="Control" parent="BackgroundPanel"]
+[node name="Labels" type="Control" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -36,49 +36,64 @@ margin/top = 0.0
 margin/right = 110.0
 margin/bottom = 200.0
 
-[node name="Label" type="Label" parent="BackgroundPanel/Labels"]
+[node name="Label" type="Label" parent="Labels"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 22.0
 margin/right = 110.0
-margin/bottom = 32.0
+margin/bottom = 54.0
 text = "Text 1"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label1" type="Label" parent="BackgroundPanel/Labels"]
+[node name="Label1" type="Label" parent="Labels"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 50.0
+margin/top = 72.0
 margin/right = 110.0
-margin/bottom = 82.0
+margin/bottom = 104.0
 text = "Text 2"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="BackgroundPanel/Labels"]
+[node name="Label2" type="Label" parent="Labels"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 100.0
+margin/top = 122.0
 margin/right = 110.0
-margin/bottom = 132.0
+margin/bottom = 154.0
 text = "Text 3"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Menu Cursor" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 75, 20 )
+polygon = Vector2Array( -8, 8, 16, 0, 16, 16 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
 
 
