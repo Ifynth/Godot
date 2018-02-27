@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://CameraMoving/Cursor.gd" type="Script" id=1]
+[ext_resource path="res://Ressourcen/Cursor/Cursor 3px.png" type="Texture" id=2]
+
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "Default"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Left Bottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 48 ), Vector2( 32, 32 ), Vector2( 16, 48 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right Top:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 48, 16 ), Vector2( 32, 32 ), Vector2( 48, 16 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Left Top:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 16 ), Vector2( 32, 32 ), Vector2( 16, 16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Right Bottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 48, 48 ), Vector2( 32, 32 ), Vector2( 48, 48 ) ]
+}
+
+[node name="Cursor" type="Sprite"]
+
+centered = false
+script = ExtResource( 1 )
+
+[node name="Left Top" type="Sprite" parent="." index="0"]
+
+position = Vector2( 31.7668, 31.7668 )
+rotation = 1.5708
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Left Bottom" type="Sprite" parent="." index="1"]
+
+position = Vector2( 31.7668, 32.2332 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right Top" type="Sprite" parent="." index="2"]
+
+position = Vector2( 32.2332, 31.7668 )
+rotation = 3.14159
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right Bottom" type="Sprite" parent="." index="3"]
+
+position = Vector2( 32.2332, 32.2332 )
+rotation = 4.71239
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+
+root_node = NodePath("..")
+autoplay = "Default"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Default = SubResource( 1 )
+blend_times = [  ]
+
+
