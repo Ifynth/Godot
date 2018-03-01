@@ -12,4 +12,6 @@ func _draw():
 	
 
 func draw_moving(pos, rang):
+	draw_line(pos, pos*2, "#ffff00", 4)
 	print(pos)
+	print(rang)
