@@ -4,6 +4,8 @@ export(int) var width = 10
 export(int) var height = 6
 export(int) var size = 64
 
+signal delete_field
+
 var draw_field
 var fields = []
 
@@ -32,6 +34,7 @@ func drawField(pos, step):
 
 func removeField():
 	print("Löschen")
+	emit_signal("delete_field")
 	fields = []
 	draw_field = false
 	update()
