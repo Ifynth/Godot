@@ -1,13 +1,13 @@
 extends Sprite
 
-var size = 64
-
 #FIXME
 export var fieldstart = Vector2(0,0)
 export var fieldsizeX = 0
 export var fieldsizeY = 0
+
 signal moved
 
+var size = 64
 var ex_field = []
 
 func _input(event):
@@ -31,7 +31,8 @@ func handleMove():
 	$AnimationPlayer.play("Default")
 
 func checkNext(target):
-	return inSideField(target) and onlyMoveOnField(target)
+	# remove "only move inside field"
+	return inSideField(target) # and onlyMoveOnField(target)
 
 func inSideField(target):
 	# FIXME
@@ -39,14 +40,14 @@ func inSideField(target):
 		print("xxx Cursor Scene don't know where to Move (Missing width/height) xxx")
 		return false
 	
-	return (target.x >= fieldstart.x and target.x <= fieldsizeX * size) and (target.y >= fieldstart.y and target.y <= fieldsizeY * size)
+	return (target.x >= fieldstart.x and target.x <= fieldsizeX * size) \
+		and (target.y >= fieldstart.y and target.y <= fieldsizeY * size)
 	
 
 func onlyMoveOnField(target):
 	# if there is no extra field there is no problem
 	if !ex_field:
 		return true
-		
 	
 	for field in ex_field:
 		if target.x == field.x * size and target.y == field.y * size:

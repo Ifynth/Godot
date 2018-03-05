@@ -19,8 +19,6 @@ func _draw():
 func drawField(pos, step):
 	removeField()
 	print("Draw")
-	print("Pos: ", pos)
-	print("Move: ", step)
 	
 	get_fields(pos, step, fields)
 	
