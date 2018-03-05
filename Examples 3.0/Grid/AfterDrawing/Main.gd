@@ -1,8 +1,14 @@
-extends Node
+extends TileMap
 
-export(Vector2) var default_startpos = Vector2(0,0)
 export(int) var move = 2
 
 func _ready():
-	$"CanvasLayer/Place Field".connect("button_down", $Background, "drawField", [default_startpos, move])
+	$"CanvasLayer/Place Field".connect("button_down", self, "drawField", [move])
 	$"CanvasLayer/Remove Field".connect("button_down", $Background, "removeField")
+	$Cursor.connect("moved", self, "updatePosition")
+
+func drawField(step):
+	$Background.drawField(world_to_map($Cursor.position), step)
+
+func updatePosition():
+	print("Cursor Moved")
