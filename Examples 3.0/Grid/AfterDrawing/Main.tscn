@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://AfterDrawing/Main.gd" type="Script" id=1]
-[ext_resource path="res://AfterDrawing/Background.gd" type="Script" id=2]
+[ext_resource path="res://AfterDrawing/Fields.gd" type="Script" id=2]
 [ext_resource path="res://Cursor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://AfterDrawing/Background.gd" type="Script" id=4]
 
 [node name="Main" type="TileMap" index="0"]
 
@@ -26,7 +27,7 @@ tile_data = PoolIntArray(  )
 script = ExtResource( 1 )
 move = 2
 
-[node name="Background" type="Sprite" parent="." index="0"]
+[node name="Fields" type="Sprite" parent="." index="0"]
 
 script = ExtResource( 2 )
 width = 10
@@ -38,7 +39,14 @@ size = 64
 fieldsizeX = 9
 fieldsizeY = 5
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+[node name="Background" type="Sprite" parent="." index="2"]
+
+script = ExtResource( 4 )
+width = 10
+height = 6
+size = 64
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 
 layer = 1
 offset = Vector2( 0, 0 )
