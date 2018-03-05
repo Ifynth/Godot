@@ -18,16 +18,13 @@ func _draw():
 		draw_line(Vector2(0, y*size), Vector2(width*size, y*size),"#ffffff",2)
 	
 
-func drawField(pos, move):
+func drawField(pos, step):
 	removeField()
 	print("Draw")
 	print("Pos: ", pos)
-	print("Move: ", move)
+	print("Move: ", step)
 	
-	fields.append(pos)
-	
-	for i in range(move):
-		print(i)
+	get_fields(pos, step, fields)
 	
 	draw_field = true
 	update()

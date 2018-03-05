@@ -3,9 +3,9 @@ extends Sprite
 var size = 64
 
 #FIXME
-var fieldstart
-var fieldsizeX
-var fieldsizeY
+export var fieldstart = Vector2(0,0)
+export var fieldsizeX = 0
+export var fieldsizeY = 0
 
 func _input(event):
 	
@@ -24,7 +24,7 @@ func _input(event):
 
 func inSideField(target):
 	# FIXME
-	if !fieldstart or !fieldsizeX or !fieldsizeY:
+	if !fieldsizeX or !fieldsizeY:
 		print("xxx Cursor Scene don't know where to Move xxx")
 		return false
 	

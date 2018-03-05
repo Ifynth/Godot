@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://CameraMoving/Cursor.gd" type="Script" id=1]
+[ext_resource path="res://Cursor.gd" type="Script" id=1]
 [ext_resource path="res://Ressourcen/Cursor/Cursor 3px.png" type="Texture" id=2]
 
 
@@ -63,6 +63,9 @@ tracks/3/keys = {
 
 centered = false
 script = ExtResource( 1 )
+fieldstart = Vector2( 0, 0 )
+fieldsizeX = 0
+fieldsizeY = 0
 
 [node name="Left Top" type="Sprite" parent="." index="0"]
 
