@@ -31,8 +31,8 @@ func handleMove():
 	$AnimationPlayer.play("Default")
 
 func checkNext(target):
-	# remove "only move inside field"
-	return inSideField(target) # and onlyMoveOnField(target)
+	# TODO remove "only move inside field"
+	return inSideField(target) and onlyMoveOnField(target)
 
 func inSideField(target):
 	# FIXME

@@ -11,14 +11,12 @@ var fields = []
 
 func _draw():
 	if draw_field:
-		print(fields)
 		for pos in fields:
 			draw_rect(Rect2(pos*size, Vector2(size,size)), "#00cc00")
 	
 
 func drawField(pos, step):
 	removeField()
-	print("Draw")
 	
 	get_fields(pos, step, fields)
 	
@@ -26,7 +24,6 @@ func drawField(pos, step):
 	update()
 
 func removeField():
-	print("Löschen")
 	emit_signal("delete_field")
 	fields = []
 	draw_field = false

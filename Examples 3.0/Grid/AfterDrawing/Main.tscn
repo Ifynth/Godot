@@ -2,7 +2,7 @@
 
 [ext_resource path="res://AfterDrawing/Main.gd" type="Script" id=1]
 [ext_resource path="res://AfterDrawing/Fields.gd" type="Script" id=2]
-[ext_resource path="res://AfterDrawing/Arrow.gd" type="Script" id=3]
+[ext_resource path="res://AfterDrawing/Arrow2.gd" type="Script" id=3]
 [ext_resource path="res://Cursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://AfterDrawing/Background.gd" type="Script" id=5]
 
