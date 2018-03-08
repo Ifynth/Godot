@@ -1,110 +1,141 @@
 extends Sprite
 
-enum {TOP, LEFT, RIGHT, BOTTOM}
-
 var size = 64
+export var thick = 1.0
+export var color = "#ffffff"
+# export var arrowSize = 20
 
-var tail
-var saved_body = []
-var body = []
+var smallE = 22 # 16
+var bigE = 42 # 48
 
-var before
-var before_pos
+var arrow_line = []
+var steps
+
 var after
-var after_pos
-
-#xxxtestingxxx
-var smallE = 22
-var bigE = 42
-
-# TODO 
-# 	1. Recognise the 90 degree scheme
-# 	2. Get the shortest Length
-# 	3. Draw on Command
+var before
 
 func _draw():
-	# Only Draw lenght 2 (no drawing if there is only a tail)
-	if saved_body.size() > 1:
-		print("body full, ready to draw")
-		generateTail()
-		generateBody()
-		generateHead()
+	if arrow_line.size() > 1:
+		# Only Draw if there are 2 
+		drawTail()
+		for i in range(1, arrow_line.size()):
+			drawBody(i)
+		drawHead()
 
-func createArrow(pos):
-	tail = pos;
-	saved_body.append(pos)
+func drawTail():
+	after = arrow_line[0]
+	if after.y <= arrow_line[1].y: draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+bigE, after.y+smallE), color, thick)
+	if after.x <= arrow_line[1].x: draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+smallE, after.y+bigE), color, thick)
+	if after.x >= arrow_line[1].x: draw_line(Vector2(after.x+bigE, after.y+smallE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+	if after.y >= arrow_line[1].y: draw_line(Vector2(after.x+smallE, after.y+bigE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+
+func drawBody(index):
+	before = after
+	after = arrow_line[index]
+	
+	# First Part
+	# Top
+	if before.x == after.x and before.y >= after.y:
+		draw_line(Vector2(before.x+smallE, before.y+smallE), Vector2(after.x+smallE, after.y+bigE), color, thick)
+		draw_line(Vector2(before.x+bigE, before.y+smallE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+	
+	# Left
+	if before.x >= after.x and before.y == after.y:
+		draw_line(Vector2(before.x+smallE, before.y+smallE), Vector2(after.x+bigE, after.y+smallE), color, thick)
+		draw_line(Vector2(before.x+smallE, before.y+bigE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+	
+	# Right
+	if before.x <= after.x and before.y == after.y:
+		draw_line(Vector2(before.x+bigE, before.y+smallE), Vector2(after.x+smallE, after.y+smallE), color, thick)
+		draw_line(Vector2(before.x+bigE, before.y+bigE), Vector2(after.x+smallE, after.y+bigE), color, thick)
+	
+	# Bottom
+	if before.x == after.x and before.y <= after.y:
+		draw_line(Vector2(before.x+smallE, before.y+bigE), Vector2(after.x+smallE, after.y+smallE), color, thick)
+		draw_line(Vector2(before.x+bigE, before.y+bigE), Vector2(after.x+bigE, after.y+smallE), color, thick)
+	
+	# makes the pieces between
+	if index + 1 != arrow_line.size():
+		var next = arrow_line[index + 1]
+		
+		if !before.y < after.y and !after.y > next.y: draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+bigE, after.y+smallE), color, thick)
+		if !before.x < after.x and !after.x > next.x: draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+smallE, after.y+bigE), color, thick)
+		if !before.x > after.x and !after.x < next.x: draw_line(Vector2(after.x+bigE, after.y+smallE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+		if !before.y > after.y and !after.y < next.y: draw_line(Vector2(after.x+smallE, after.y+bigE), Vector2(after.x+bigE, after.y+bigE), color, thick)
 	
 
-func delArrow():
-	tail = null
-	saved_body = []
+func drawHead():
+	# Top
+	if before.x == after.x and before.y >= after.y:
+		draw_line(Vector2(after.x+smallE, after.y+bigE), Vector2(after.x+smallE, after.y+bigE - 10), color, thick)
+		draw_line(Vector2(after.x+smallE, after.y+bigE - 10), Vector2(after.x+smallE - 5, after.y+bigE - 10), color, thick)
+		draw_line(Vector2(after.x+smallE - 5, after.y+bigE - 10), Vector2(after.x + size/2, after.y+bigE - 25), color, thick)
+		draw_line(Vector2(after.x + size/2, after.y+bigE - 25), Vector2(after.x+bigE + 5, after.y+bigE - 10), color, thick)
+		draw_line(Vector2(after.x+bigE + 5, after.y+bigE - 10), Vector2(after.x+bigE, after.y+bigE - 10), color, thick)
+		draw_line(Vector2(after.x+bigE, after.y+bigE - 10), Vector2(after.x+bigE, after.y+bigE), color, thick)
+	
+	# Left
+	if before.x >= after.x and before.y == after.y:
+		draw_line(Vector2(after.x+bigE, after.y+smallE), Vector2(after.x+bigE - 10, after.y+smallE), color, thick)
+		draw_line(Vector2(after.x+bigE - 10, after.y+smallE), Vector2(after.x+bigE - 10, after.y+smallE - 5), color, thick)
+		draw_line(Vector2(after.x+bigE - 10, after.y+smallE - 5), Vector2(after.x+bigE - 25, after.y + size/2), color, thick)
+		draw_line(Vector2(after.x+bigE - 25, after.y + size/2), Vector2(after.x+bigE - 10, after.y+bigE + 5), color, thick)
+		draw_line(Vector2(after.x+bigE - 10, after.y+bigE + 5), Vector2(after.x+bigE - 10, after.y+bigE), color, thick)
+		draw_line(Vector2(after.x+bigE - 10, after.y+bigE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+	
+	# Right
+	if before.x <= after.x and before.y == after.y:
+		draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+smallE + 10, after.y+smallE), color, thick)
+		draw_line(Vector2(after.x+smallE + 10, after.y+smallE), Vector2(after.x+smallE + 10, after.y+smallE - 5), color, thick)
+		draw_line(Vector2(after.x+smallE + 10, after.y+smallE - 5), Vector2(after.x+smallE + 25, after.y + size/2), color, thick)
+		draw_line(Vector2(after.x+smallE + 25, after.y + size/2), Vector2(after.x+smallE + 10, after.y+bigE + 5), color, thick)
+		draw_line(Vector2(after.x+smallE + 10, after.y+bigE + 5), Vector2(after.x+smallE + 10, after.y+bigE), color, thick)
+		draw_line(Vector2(after.x+smallE + 10, after.y+bigE), Vector2(after.x+smallE, after.y+bigE), color, thick)
+	
+	# Bottom
+	if before.x == after.x and before.y <= after.y:
+		draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+smallE, after.y+smallE + 10), color, thick)
+		draw_line(Vector2(after.x+smallE, after.y+smallE + 10), Vector2(after.x+smallE - 5, after.y+smallE + 10), color, thick)
+		draw_line(Vector2(after.x+smallE - 5, after.y+smallE + 10), Vector2(after.x + size/2, after.y+smallE + 25), color, thick)
+		draw_line(Vector2(after.x + size/2, after.y+smallE + 25), Vector2(after.x+bigE + 5, after.y+smallE + 10), color, thick)
+		draw_line(Vector2(after.x+bigE + 5, after.y+smallE + 10), Vector2(after.x+bigE, after.y+smallE + 10), color, thick)
+		draw_line(Vector2(after.x+bigE, after.y+smallE + 10), Vector2(after.x+bigE, after.y+smallE), color, thick)
+	
+
+func createArrow(pos, steps):
+	arrow_line.append(pos)
+	self.steps = steps
 
 func addBody(pos):
-	# Check if the pos isn't in Arrow - Line
+	# check if pos is in arrow_line
+	var index = arrow_line.find(pos)
+	if index != -1:
+		arrow_line.resize(index + 1)
+	else:
+		# check if stepsize is reached
+		if arrow_line.size() <= steps:
+			arrow_line.append(pos)
+		else:
+			calcNewRoute(arrow_line[0], pos)
 	
-	if saved_body.size() != 0:
-		# vergleiche alte Position mit der neuen Position
-		if saved_body[saved_body.size()-1].y > pos.y:
-			body.append(TOP)
-		elif saved_body[saved_body.size()-1].x > pos.x:
-			body.append(LEFT)
-		elif saved_body[saved_body.size()-1].x < pos.x:
-			body.append(RIGHT)
-		elif saved_body[saved_body.size()-1].y < pos.y:
-			body.append(BOTTOM)
-		saved_body.append(pos)
-	print("Saved: ", saved_body)
-	print("Body: ", body)
-	
-	if saved_body.size() > 1:
-		update()
+	update()
 
-func generateTail():
-	after = body[0] #HACK to know where is next #body.pop_front()
-	after_pos = tail
-	if after != TOP: draw_line(Vector2(tail.x+smallE, tail.y+smallE), Vector2(tail.x+bigE, tail.y+smallE), "#ffffff")
-	if after != LEFT: draw_line(Vector2(tail.x+smallE, tail.y+smallE), Vector2(tail.x+smallE, tail.y+bigE), "#ffffff")
-	if after != RIGHT: draw_line(Vector2(tail.x+bigE, tail.y+smallE), Vector2(tail.x+bigE, tail.y+bigE), "#ffffff")
-	if after != BOTTOM: draw_line(Vector2(tail.x+smallE, tail.y+bigE), Vector2(tail.x+bigE, tail.y+bigE), "#ffffff")
+func delArrow():
+	arrow_line = []
+	update()
 
-func generateBody():
-	#TODO zeichnet zurzeit nur 1x, muss öfters aufgerufen werden
-	#if body.size() != 0:
-	before = after
-	before_pos = after_pos
-	after = body[body.size()-1] #HACK
-	match after:
-		TOP: after_pos.y -= size
-		LEFT: after_pos.x -= size
-		RIGHT: after_pos.x += size
-		BOTTOM: after_pos.y += size
-	
-	#Draw Body rect with holes
-	#if after != TOP or before != TOP: draw_line(Vector2(tail.x+smallE, tail.y+smallE), Vector2(tail.x+bigE, tail.y+smallE), "#ffffff")
-	#if after != LEFT or before != LEFT: draw_line(Vector2(tail.x+smallE, tail.y+smallE), Vector2(tail.x+smallE, tail.y+bigE), "#ffffff")
-	#if after != RIGHT or before != RIGHT: draw_line(Vector2(tail.x+bigE, tail.y+smallE), Vector2(tail.x+bigE, tail.y+bigE), "#ffffff")
-	#if after != BOTTOM or before != BOTTOM: draw_line(Vector2(tail.x+smallE, tail.y+bigE), Vector2(tail.x+bigE, tail.y+bigE), "#ffffff")
-	
-	#Row
-	if (before == RIGHT and after == RIGHT) or (before == LEFT and after == LEFT):
-		draw_line(Vector2(before_pos.x+bigE, before_pos.y+smallE), Vector2(after_pos.x+smallE, after_pos.y+smallE), "#ffffff")
-		draw_line(Vector2(before_pos.x+bigE, before_pos.y+bigE), Vector2(after_pos.x+smallE, after_pos.y+bigE), "#ffffff")
-	
-
-func generateHead():
-	# body should be empty
-	# TODO Delete before ~Fin~
-	#if body.size() != 0:
-	#	print("xxx Body should be Empty [Arrow.gd] xxx")
-	#	return false
-	
-	# TODO Recognise Scheme (90 degree)!!!
-	if after == RIGHT:
-		# Head (Right)
-		draw_line(Vector2(after_pos.x+20, after_pos.y+22), Vector2(after_pos.x+30, after_pos.y+22), "#ffffff")
-		draw_line(Vector2(after_pos.x+30, after_pos.y+22), Vector2(after_pos.x+30, after_pos.y+17), "#ffffff")
-		draw_line(Vector2(after_pos.x+30, after_pos.y+17), Vector2(after_pos.x+45, after_pos.y+32), "#ffffff")
-		draw_line(Vector2(after_pos.x+45, after_pos.y+32), Vector2(after_pos.x+30, after_pos.y+47), "#ffffff")
-		draw_line(Vector2(after_pos.x+30, after_pos.y+47), Vector2(after_pos.x+30, after_pos.y+42), "#ffffff")
-		draw_line(Vector2(after_pos.x+30, after_pos.y+42), Vector2(after_pos.x+20, after_pos.y+42), "#ffffff")
+func calcNewRoute(start, goal):
+	# start from beginning
+	arrow_line.resize(1)
+	while arrow_line[arrow_line.size() -1] != goal:
+		# move first on x
+		if arrow_line[arrow_line.size() -1].x < goal.x:
+			arrow_line.append(Vector2(arrow_line[arrow_line.size() -1].x + size, arrow_line[arrow_line.size() -1].y))
+		elif arrow_line[arrow_line.size() -1].x > goal.x:
+			arrow_line.append(Vector2(arrow_line[arrow_line.size() -1].x - size, arrow_line[arrow_line.size() -1].y))
+		# move then on y
+		if arrow_line[arrow_line.size() -1].y < goal.y:
+			arrow_line.append(Vector2(arrow_line[arrow_line.size() -1].x, arrow_line[arrow_line.size() -1].y + size))
+		elif arrow_line[arrow_line.size() -1].y > goal.y:
+			arrow_line.append(Vector2(arrow_line[arrow_line.size() -1].x, arrow_line[arrow_line.size() -1].y - size))
 	

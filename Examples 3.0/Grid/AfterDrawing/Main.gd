@@ -11,6 +11,7 @@ func _ready():
 func _input(event):
 	#testing
 	if event.is_action_pressed("ui_accept"):
+		onButtonRemoveField()
 		onButttonDrawField()
 
 func onButttonDrawField():
