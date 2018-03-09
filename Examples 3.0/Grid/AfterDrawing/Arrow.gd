@@ -67,39 +67,76 @@ func drawBody(index):
 func drawHead():
 	# Top
 	if before.x == after.x and before.y >= after.y:
+		# TODO TOP ARROW BROKE
+		createHead(false, -1)
+		"""
 		draw_line(Vector2(after.x+smallE, after.y+bigE), Vector2(after.x+smallE, after.y+bigE - 10), color, thick)
 		draw_line(Vector2(after.x+smallE, after.y+bigE - 10), Vector2(after.x+smallE - 5, after.y+bigE - 10), color, thick)
 		draw_line(Vector2(after.x+smallE - 5, after.y+bigE - 10), Vector2(after.x + size/2, after.y+bigE - 25), color, thick)
 		draw_line(Vector2(after.x + size/2, after.y+bigE - 25), Vector2(after.x+bigE + 5, after.y+bigE - 10), color, thick)
 		draw_line(Vector2(after.x+bigE + 5, after.y+bigE - 10), Vector2(after.x+bigE, after.y+bigE - 10), color, thick)
 		draw_line(Vector2(after.x+bigE, after.y+bigE - 10), Vector2(after.x+bigE, after.y+bigE), color, thick)
+		"""
 	
 	# Left
 	if before.x >= after.x and before.y == after.y:
+		createHead(true, -1)
+		"""
 		draw_line(Vector2(after.x+bigE, after.y+smallE), Vector2(after.x+bigE - 10, after.y+smallE), color, thick)
 		draw_line(Vector2(after.x+bigE - 10, after.y+smallE), Vector2(after.x+bigE - 10, after.y+smallE - 5), color, thick)
 		draw_line(Vector2(after.x+bigE - 10, after.y+smallE - 5), Vector2(after.x+bigE - 25, after.y + size/2), color, thick)
 		draw_line(Vector2(after.x+bigE - 25, after.y + size/2), Vector2(after.x+bigE - 10, after.y+bigE + 5), color, thick)
 		draw_line(Vector2(after.x+bigE - 10, after.y+bigE + 5), Vector2(after.x+bigE - 10, after.y+bigE), color, thick)
 		draw_line(Vector2(after.x+bigE - 10, after.y+bigE), Vector2(after.x+bigE, after.y+bigE), color, thick)
+		"""
 	
 	# Right
 	if before.x <= after.x and before.y == after.y:
+		createHead(true, 1)
+		"""
 		draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+smallE + 10, after.y+smallE), color, thick)
 		draw_line(Vector2(after.x+smallE + 10, after.y+smallE), Vector2(after.x+smallE + 10, after.y+smallE - 5), color, thick)
 		draw_line(Vector2(after.x+smallE + 10, after.y+smallE - 5), Vector2(after.x+smallE + 25, after.y + size/2), color, thick)
 		draw_line(Vector2(after.x+smallE + 25, after.y + size/2), Vector2(after.x+smallE + 10, after.y+bigE + 5), color, thick)
 		draw_line(Vector2(after.x+smallE + 10, after.y+bigE + 5), Vector2(after.x+smallE + 10, after.y+bigE), color, thick)
 		draw_line(Vector2(after.x+smallE + 10, after.y+bigE), Vector2(after.x+smallE, after.y+bigE), color, thick)
+		"""
 	
 	# Bottom
 	if before.x == after.x and before.y <= after.y:
+		createHead(false, 1)
+		"""
 		draw_line(Vector2(after.x+smallE, after.y+smallE), Vector2(after.x+smallE, after.y+smallE + 10), color, thick)
 		draw_line(Vector2(after.x+smallE, after.y+smallE + 10), Vector2(after.x+smallE - 5, after.y+smallE + 10), color, thick)
 		draw_line(Vector2(after.x+smallE - 5, after.y+smallE + 10), Vector2(after.x + size/2, after.y+smallE + 25), color, thick)
 		draw_line(Vector2(after.x + size/2, after.y+smallE + 25), Vector2(after.x+bigE + 5, after.y+smallE + 10), color, thick)
 		draw_line(Vector2(after.x+bigE + 5, after.y+smallE + 10), Vector2(after.x+bigE, after.y+smallE + 10), color, thick)
 		draw_line(Vector2(after.x+bigE, after.y+smallE + 10), Vector2(after.x+bigE, after.y+smallE), color, thick)
+		"""
+	
+
+func createHead(horizontal, flip, start = 10, ankle = 5, arrow_point = 15):
+	# horizontal -> True: Left, Right | False: Top, Bottom
+	# flip: 1 -> z.B. Right, Bottom | -1 -> z.B. Left, Top
+	var x = after.x + smallE
+	var y = after.y + smallE
+	if flip == -1 and !horizontal: x = after.x + bigE #Top
+	if flip == -1 and horizontal: x = after.x + bigE #Left
+	
+	if horizontal:
+		draw_line(Vector2(x,y), Vector2(x + start * flip, y), color, thick); x += start * flip
+		draw_line(Vector2(x,y), Vector2(x, y - ankle), color, thick); y -= ankle
+		draw_line(Vector2(x,y), Vector2(x + arrow_point * flip, after.y + size/2), color, thick); x += arrow_point * flip; y = after.y + size/2
+		draw_line(Vector2(x,y), Vector2(x - arrow_point * flip, after.y + bigE + ankle), color, thick); x -= arrow_point * flip; y = after.y + bigE + ankle
+		draw_line(Vector2(x,y), Vector2(x, y - ankle), color, thick); y -= ankle
+		draw_line(Vector2(x,y), Vector2(x - start * flip, y), color, thick);
+	else:
+		draw_line(Vector2(x,y), Vector2(x, y + start * flip), color, thick); y += start * flip
+		draw_line(Vector2(x,y), Vector2(x - ankle, y), color, thick); x -= ankle
+		draw_line(Vector2(x,y), Vector2(after.x + size/2, y + arrow_point * flip), color, thick); x = after.x + size/2; y += arrow_point * flip
+		draw_line(Vector2(x,y), Vector2(after.x + bigE + ankle, y - arrow_point * flip), color, thick); x = after.x + bigE + ankle; y -= arrow_point * flip
+		draw_line(Vector2(x,y), Vector2(x - ankle, y), color, thick); x -= ankle
+		draw_line(Vector2(x,y), Vector2(x, y - start * flip), color, thick);
 	
 
 func createArrow(pos, steps):
