@@ -3,7 +3,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Charakter.gd" type="Script" id=2]
 
-[node name="Charakter" type="Sprite" index="0"]
+[node name="Charakter" type="Sprite"]
 
 texture = ExtResource( 1 )
 centered = false

@@ -26,5 +26,7 @@ func updatePosition():
 	if $Fields.draw_field:
 		$Cursor.ex_field = $Fields.fields
 		
-		#give Arrow his new body
-		$Arrow.addBody($Cursor.position)
+		# only Add if Cursor is inside Extra field
+		if $Cursor.onlyMoveOnExField($Cursor.position):
+			# give Arrow his new body
+			$Arrow.addBody($Cursor.position)

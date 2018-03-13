@@ -17,9 +17,7 @@ func _draw():
 
 func drawField(pos, step):
 	removeField()
-	
 	get_fields(pos, step, fields)
-	
 	draw_field = true
 	update()
 

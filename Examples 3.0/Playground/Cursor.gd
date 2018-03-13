@@ -1,6 +1,5 @@
 extends Sprite
 
-#FIXME
 export var fieldstart = Vector2(0,0)
 export var fieldsizeX = 0
 export var fieldsizeY = 0
@@ -31,11 +30,10 @@ func handleMove():
 	$AnimationPlayer.play("Default")
 
 func checkNext(target):
-	# TODO remove "only move inside field"
-	return inSideField(target) and onlyMoveOnField(target)
+	# onlyMoveOnExField allows the Cursor to only move inside the new generated field
+	return inSideField(target) #and onlyMoveOnExField(target)
 
 func inSideField(target):
-	# FIXME
 	if !fieldsizeX or !fieldsizeY:
 		print("xxx Cursor Scene don't know where to Move (Missing width/height) xxx")
 		return false
@@ -44,7 +42,7 @@ func inSideField(target):
 		and (target.y >= fieldstart.y and target.y <= fieldsizeY * size)
 	
 
-func onlyMoveOnField(target):
+func onlyMoveOnExField(target):
 	# if there is no extra field there is no problem
 	if !ex_field:
 		return true
