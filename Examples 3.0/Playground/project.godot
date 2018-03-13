@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="Grid"
+config/name="Playground"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
