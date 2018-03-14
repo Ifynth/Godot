@@ -3,10 +3,12 @@
 [ext_resource path="res://AfterDrawing/Main.gd" type="Script" id=1]
 [ext_resource path="res://AfterDrawing/Fields.gd" type="Script" id=2]
 [ext_resource path="res://AfterDrawing/Arrow.gd" type="Script" id=3]
-[ext_resource path="res://Cursor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://AfterDrawing/Background.gd" type="Script" id=5]
+[ext_resource path="res://Components/Cursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/Background.gd" type="Script" id=5]
 
-[node name="Main" type="TileMap" index="0"]
+
+
+[node name="Main" type="TileMap"]
 
 mode = 0
 tile_set = null

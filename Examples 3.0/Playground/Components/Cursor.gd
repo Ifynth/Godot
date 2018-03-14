@@ -14,13 +14,13 @@ func _input(event):
 	if event.is_action("ui_up") and !event.is_action_released("ui_up") and checkNext(Vector2(position.x,position.y - size)):
 		position.y -= size
 		handleMove()
-	elif event.is_action("ui_left") and !event.is_action_released("ui_left") and checkNext(Vector2(position.x - size,position.y)):
+	if event.is_action("ui_left") and !event.is_action_released("ui_left") and checkNext(Vector2(position.x - size,position.y)):
 		position.x -= size
 		handleMove()
-	elif event.is_action("ui_right") and !event.is_action_released("ui_right") and checkNext(Vector2(position.x + size,position.y)):
+	if event.is_action("ui_right") and !event.is_action_released("ui_right") and checkNext(Vector2(position.x + size,position.y)):
 		position.x += size
 		handleMove()
-	elif event.is_action("ui_down") and !event.is_action_released("ui_down") and checkNext(Vector2(position.x,position.y + size)):
+	if event.is_action("ui_down") and !event.is_action_released("ui_down") and checkNext(Vector2(position.x,position.y + size)):
 		position.y += size
 		handleMove()
 	
@@ -34,9 +34,9 @@ func checkNext(target):
 	return inSideField(target) #and onlyMoveOnExField(target)
 
 func inSideField(target):
+		# if there is no Field he is allowed to move he can move everywhere
 	if !fieldsizeX or !fieldsizeY:
-		print("xxx Cursor Scene don't know where to Move (Missing width/height) xxx")
-		return false
+		return true
 	
 	return (target.x >= fieldstart.x and target.x <= fieldsizeX * size) \
 		and (target.y >= fieldstart.y and target.y <= fieldsizeY * size)
