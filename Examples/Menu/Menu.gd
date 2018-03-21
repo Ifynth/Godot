@@ -38,6 +38,6 @@ func _input(event):
 			cursor.set_pos(Vector2(cursor.get_pos().x, cursor_std_pos.y + points_index * label_distance))
 
 func reset():
-	# TODO not neccessary if it is only there if it spawns
+	# not neccessary if it is only there if it spawns
 	cursor.set_pos(cursor_std_pos)
 	points_index = 0
