@@ -38,6 +38,7 @@ func checkMainScene(path):
 		var file_name = dir.get_next()
 		while (file_name != ""):
 			if file_name == "Main.tscn":
+				dir.list_dir_end()
 				return true
 			file_name = dir.get_next()
 	else:
