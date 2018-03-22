@@ -2,6 +2,9 @@ extends Node
 
 var charaktere = []
 
+var attacker
+var defender
+
 func _ready():
 	
 	var dir = Directory.new()
@@ -16,6 +19,6 @@ func _ready():
 	else:
 		print("Couldn't open Directory! Path: ", path)
 	
-
-func getFightChars():
-	return charaktere
+	# HACK set the chars that have to fight
+	attacker = charaktere[0]
+	defender = charaktere[1]
