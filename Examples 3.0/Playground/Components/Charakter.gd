@@ -16,6 +16,8 @@ func resetStats():
 func takeDamage(dmg):
 	if dmg - DEF >= 0:
 		akt_LP -= dmg - DEF
+		return dmg - DEF
+	return 0
 
 func levelUp():
 	LP += randi() % 5

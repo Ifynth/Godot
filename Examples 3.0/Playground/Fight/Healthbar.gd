@@ -26,5 +26,6 @@ func takeDmg(hp):
 		hp -= 1
 
 func removeHealthPoint():
-	get_child(hp - 1).loseHp()
-	hp -= 1
+	if hp > 0:
+		get_child(hp - 1).loseHp()
+		hp -= 1

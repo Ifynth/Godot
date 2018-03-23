@@ -3,8 +3,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Components/Charakter.gd" type="Script" id=2]
 
-
-[node name="Charakter" type="Sprite"]
+[node name="Charakter" type="Sprite" index="0"]
 
 texture = ExtResource( 1 )
 centered = false
@@ -12,5 +11,9 @@ script = ExtResource( 2 )
 _sections_unfolded = [ "Offset" ]
 movement_range = 3
 attack_range = 1
+LP = 10
+ATK = 3
+DEF = 1
+EXP = 0
 
 
