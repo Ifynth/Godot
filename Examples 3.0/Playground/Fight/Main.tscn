@@ -3,7 +3,7 @@
 [ext_resource path="res://Fight/Main.gd" type="Script" id=1]
 [ext_resource path="res://Fight/CharakterUI.tscn" type="PackedScene" id=2]
 
-[node name="Fight" type="Node" index="0"]
+[node name="Fight" type="Node"]
 
 script = ExtResource( 1 )
 
