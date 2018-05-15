@@ -1,21 +1,32 @@
 extends Node
 
-"""
-enum {LEFT, RIGHT}
-var start = LEFT
-"""
+var attacker
+var defender
 
 func _ready():
+	"""
+	# could cause heavy loading
+	# maybe better to save it into a array and pop them out
+	attacker = Charakter.getRandomChar()
+	defender = Charakter.getRandomChar()
+	while attacker == defender:
+		defender = Charakter.getRandomChar()
+	"""
+	attacker = Charakter.charaktere[0]
+	defender = Charakter.charaktere[1]
+	
+	# Set Button Function
 	$"UI/Test Buttons/Test".connect("button_down", self, "onButtonTestPressed")
-	$"UI/Test Buttons/Left Attack".connect("button_down", self, "simulateAttack", [Charakter.attacker, Charakter.defender, $UI/Defender])
-	$"UI/Test Buttons/Right Attack".connect("button_down", self, "simulateAttack", [Charakter.defender, Charakter.attacker, $UI/Attacker])
+	$"UI/Test Buttons/Left Attack".connect("button_down", self, "simulateAttack", [attacker, defender, $UI/Defender])
+	$"UI/Test Buttons/Right Attack".connect("button_down", self, "simulateAttack", [defender, attacker, $UI/Attacker])
 	$"UI/Test Buttons/End Fight".connect("button_down", self, "endFight")
 	
+	# Print Additional Info and Setting UI
 	print("Fighting Chars: ")
-	print("  Attacker: ", Charakter.attacker.get_name())
-	setUI(Charakter.attacker, $UI/Attacker)
-	print("  Defender: ", Charakter.defender.get_name())
-	setUI(Charakter.defender, $UI/Defender)
+	print("  Attacker: ", attacker.get_name())
+	setUI(attacker, $UI/Attacker)
+	print("  Defender: ", defender.get_name())
+	setUI(defender, $UI/Defender)
 	
 
 func simulateAttack(attacker, defender, ui):
