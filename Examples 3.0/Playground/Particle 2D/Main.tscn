@@ -162,15 +162,9 @@ _sections_unfolded = [ "Flags", "Gravity", "Initial Velocity", "Scale", "Spread"
 
 [node name="Main" type="Node" index="0"]
 
-[node name="Char" type="Node2D" parent="." index="0"]
+[node name="Snow" type="Particles2D" parent="." index="0"]
 
 position = Vector2( 229.116, 192.94 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Particles2D" type="Particles2D" parent="Char" index="0"]
-
 rotation = 1.5708
 emitting = true
 amount = 6
@@ -192,15 +186,9 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time", "Transform" ]
 
-[node name="Feuer" type="Node2D" parent="." index="1"]
+[node name="Fire" type="Particles2D" parent="." index="1"]
 
 position = Vector2( 438.615, 192.567 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Particles2D" type="Particles2D" parent="Feuer" index="0"]
-
 rotation = -1.5708
 emitting = true
 amount = 100
@@ -222,15 +210,9 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
 
-[node name="Laser" type="Node2D" parent="." index="2"]
+[node name="Laser" type="Particles2D" parent="." index="2"]
 
 position = Vector2( 648.352, 192.594 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Particles2D" type="Particles2D" parent="Laser" index="0"]
-
 emitting = true
 amount = 100
 lifetime = 2.0
