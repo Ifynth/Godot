@@ -7,10 +7,7 @@ path="res://.import/Dripping.png-0a4975867510496586097ff3b8c4e7f9.stex"
 [deps]
 
 source_file="res://Ressourcen/Particles/Dripping.png"
-source_md5="a763970f778076dcde45bba6f990e46c"
-
 dest_files=[ "res://.import/Dripping.png-0a4975867510496586097ff3b8c4e7f9.stex" ]
-dest_md5="5c58f3ea19416e88a1391a739f4a01e1"
 
 [params]
 

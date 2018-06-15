@@ -7,10 +7,7 @@ path="res://.import/Laser.png-7e281c3d2d0e54fb7b5e7807b0d23410.stex"
 [deps]
 
 source_file="res://Ressourcen/Particles/Laser.png"
-source_md5="71591c6e460334a28bcd527fc69d878b"
-
 dest_files=[ "res://.import/Laser.png-7e281c3d2d0e54fb7b5e7807b0d23410.stex" ]
-dest_md5="0b5445c14ea2a04ceb461a2a2027614b"
 
 [params]
 

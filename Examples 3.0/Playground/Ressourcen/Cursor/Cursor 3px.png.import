@@ -7,10 +7,7 @@ path="res://.import/Cursor 3px.png-b7e25f8406d30f8375462c37bbebb497.stex"
 [deps]
 
 source_file="res://Ressourcen/Cursor/Cursor 3px.png"
-source_md5="881f0eb5272829eb9ca69045edd50c7d"
-
 dest_files=[ "res://.import/Cursor 3px.png-b7e25f8406d30f8375462c37bbebb497.stex" ]
-dest_md5="87af75e46b52617e21cdcef40dd5c292"
 
 [params]
 
