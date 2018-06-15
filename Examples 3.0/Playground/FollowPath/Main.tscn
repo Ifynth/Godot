@@ -10,7 +10,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 133.391, 227.856, 0, 0, 0, 0, 893.361, 218.034, 0, 0, 0, 0, 944.926, 549.523, 0, 0, 0, 0, 1115.58, 101.399, 0, 0, 0, 0, 717.794, 68.2497, 0, 0, 0, 0, 673.596, 431.66, 0, 0, 0, 0, 130.936, 63.3387 )
 }
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
 [node name="Path2D" type="Path2D" parent="." index="0"]
 
