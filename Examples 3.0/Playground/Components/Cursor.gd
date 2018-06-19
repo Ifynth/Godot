@@ -1,16 +1,24 @@
 extends Sprite
 
+export var can_pickup = false
 export var fieldstart = Vector2(0,0)
 export var fieldsizeX = 0
 export var fieldsizeY = 0
 
-signal moved
+signal moved # TODO find ref. where/why do I needed that for???
+signal picked_up
 
 var size = 64
 var ex_field = []
 
+# States:
+# 	Default -> Moving
+# 	Picked_up -> a Charakter is Binded on the Cursor
+enum states {DEFAULT, PICKED_UP}
+var state = DEFAULT
+
 func _input(event):
-	
+	# Handle Movement
 	if event.is_action("ui_up") and !event.is_action_released("ui_up") and checkNext(Vector2(position.x,position.y - size)):
 		position.y -= size
 		handleMove()
@@ -24,6 +32,13 @@ func _input(event):
 		position.y += size
 		handleMove()
 	
+	# Handle Pick up
+	if event.is_action_pressed("ui_accept") and can_pickup:
+		match(state):
+			DEFAULT:
+				handleDefaultInput()
+			PICKED_UP:
+				handlePickedUpInput()
 
 func handleMove():
 	emit_signal("moved")
@@ -56,3 +71,15 @@ func onlyMoveOnExField(target):
 func deleteField():
 	ex_field = []
 	
+
+# Pick up Handler's
+func handleDefaultInput():
+	print("Pick up")
+	# picked_up = node
+	state = PICKED_UP
+	
+
+func handlePickedUpInput():
+	print("Drop")
+	# picked_up = null
+	state = DEFAULT
