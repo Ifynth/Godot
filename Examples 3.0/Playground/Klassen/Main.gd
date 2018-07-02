@@ -8,10 +8,12 @@ func _ready():
 	var animal = Animal.new("Hans")
 	animal.shoutout()
 	
-	var tiger = Animal.new("Mewie").getTiger()
-	tiger.shoutout()
+	### dunno what here happening (why error that he need 1 param if he got 1)###
 	
-	var pinguin = Pinguin.new("Happy")
-	pinguin.shoutout()
+	#var tiger = Tiger.new("Mewie")
+	#tiger.shoutout()
+	
+	#var pinguin = Pinguin.new("Happy")
+	#pinguin.shoutout()
 	
 	get_tree().change_scene("res://Game.tscn")

@@ -1,10 +1,9 @@
-extends Node
-#extends "res://Klassen/Animal.gd"
+extends "res://Klassen/Animal.gd"
 
-var name_
 var rasse = "Tiger"
 
 func _init(name):
+	print("call Tiger init")
 	self.name_ = name
 
 func shoutout():
