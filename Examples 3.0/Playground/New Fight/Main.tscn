@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://New Fight/Field.tscn" type="PackedScene" id=1]
+[ext_resource path="res://New Fight/ActionBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://New Fight/Player.tscn" type="PackedScene" id=3]
+
+[node name="Fight" type="Node" index="0"]
+
+[node name="Field" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 507.479, 429.917 )
+
+[node name="ActionBar" parent="." index="1" instance=ExtResource( 2 )]
+
+margin_left = 148.0
+margin_top = 475.0
+margin_right = 268.0
+margin_bottom = 491.0
+
+[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 115.236, 45.4294 )
+
+
