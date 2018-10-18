@@ -20,6 +20,7 @@ func createButtonFolder(ignore = [], hidden = false):
 		while (file_name != ""):
 			if dir.current_is_dir() and ignore.find(file_name) == -1 and checkMainScene(path + file_name):
 				var button = Button.new()
+				button.set_size(Vector2(200, 20))
 				button.set_name(file_name)
 				button.set_text(file_name)
 				button.rect_position = button_pos
